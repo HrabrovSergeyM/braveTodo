@@ -31,7 +31,14 @@
                             <outlet property="delegate" destination="EAX-tH-58p" id="5Jl-d0-i9Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="braveTodo" id="UWp-wm-eH9"/>
+                    <navigationItem key="navigationItem" title="braveTodo" id="UWp-wm-eH9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KhK-lX-ddj">
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="EAX-tH-58p" id="283-Di-Xgn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVV-Bq-Bjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,6 +71,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
