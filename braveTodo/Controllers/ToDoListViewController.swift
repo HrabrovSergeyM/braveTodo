@@ -1,29 +1,17 @@
 import UIKit
+import CoreData
 
 class ToDoListViewController: UITableViewController {
+    
 
     var itemArray = [Item]()
-    
-
-    
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadItems()
         
-        let newItem = Item()
-        newItem.title = "Buy milk"
-        itemArray.append(newItem)
-        let newItem2 = Item()
-        newItem2.title = "Buy medications"
-        itemArray.append(newItem2)
-        let newItem3 = Item()
-        newItem3.title = "Bake the cake"
-        itemArray.append(newItem3)
-        
-//        if let items = defaults.array(forKey: "ToDoListArray") as? [DataModel] {
-//            data = items
-//        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,13 +33,11 @@ class ToDoListViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        tableView.reloadData()
-      
+        saveItems()
+        
         tableView.deselectRow(at: indexPath, animated: true)
-       
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -59,12 +45,17 @@ class ToDoListViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New ToDo Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            let newItem = Item()
+            
+//            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            let newItem = Item(context: self.context)
             newItem.title = textField.text ?? "New item"
+            newItem.done = false
             self.itemArray.append(newItem)
             
-            self.defaults.set(self.itemArray, forKey: "ToDoListArray")
-            self.tableView.reloadData()
+            let encoder = PropertyListEncoder()
+            
+            self.saveItems()
             
         }
         alert.addTextField { alertTextField in
@@ -76,5 +67,28 @@ class ToDoListViewController: UITableViewController {
         alert.addAction(action)
         present(alert, animated: true)
     }
+    
+    // MARK: - Model Manipulation Methods
+
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func loadItems() {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+           itemArray = try context.fetch(request)
+        } catch {
+            print("Error reading context \(error)")
+        }
+    }
 }
+
 
