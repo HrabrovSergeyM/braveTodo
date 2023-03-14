@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414E88D411F2A385F00ABF5B /* Pods_braveTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FEC4F7C0F168E0EB169875 /* Pods_braveTodo.framework */; };
 		E968DDE529C01F3F00671719 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E968DDE429C01F3F00671719 /* CategoryViewController.swift */; };
 		E9D5DA3129BF158F00A4F7AD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9D5DA2F29BF158F00A4F7AD /* DataModel.xcdatamodeld */; };
 		E9DEE15B29C03DF100195496 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9DEE15A29C03DF100195496 /* SwipeCellKit */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13EC2AB2D207E02B8308EC4B /* Pods-braveTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braveTodo.debug.xcconfig"; path = "Target Support Files/Pods-braveTodo/Pods-braveTodo.debug.xcconfig"; sourceTree = "<group>"; };
+		35FEC4F7C0F168E0EB169875 /* Pods_braveTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_braveTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0C23AC36F0D474D7C10E780 /* Pods-braveTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-braveTodo.release.xcconfig"; path = "Target Support Files/Pods-braveTodo/Pods-braveTodo.release.xcconfig"; sourceTree = "<group>"; };
 		E968DDE429C01F3F00671719 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E9D5DA3029BF158F00A4F7AD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		E9DEE15C29C0522C00195496 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
@@ -37,12 +41,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9DEE15B29C03DF100195496 /* SwipeCellKit in Frameworks */,
+				414E88D411F2A385F00ABF5B /* Pods_braveTodo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B751D07E48B5FAEE3A2B838 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35FEC4F7C0F168E0EB169875 /* Pods_braveTodo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A3F7D30A28CDD625687E4AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13EC2AB2D207E02B8308EC4B /* Pods-braveTodo.debug.xcconfig */,
+				C0C23AC36F0D474D7C10E780 /* Pods-braveTodo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E9D5DA0A29BEE3EE00A4F7AD /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +106,8 @@
 			children = (
 				EB2BE4F8239524DB00FB933B /* braveTodo */,
 				EB2BE4F7239524DB00FB933B /* Products */,
+				9A3F7D30A28CDD625687E4AE /* Pods */,
+				2B751D07E48B5FAEE3A2B838 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB2BE50A239524DC00FB933B /* Build configuration list for PBXNativeTarget "braveTodo" */;
 			buildPhases = (
+				90BA711176CE8BB612611791 /* [CP] Check Pods Manifest.lock */,
 				EB2BE4F2239524DB00FB933B /* Sources */,
 				EB2BE4F3239524DB00FB933B /* Frameworks */,
 				EB2BE4F4239524DB00FB933B /* Resources */,
+				EE1B4FAA544FF5969D37D3FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +205,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		90BA711176CE8BB612611791 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-braveTodo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE1B4FAA544FF5969D37D3FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-braveTodo/Pods-braveTodo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-braveTodo/Pods-braveTodo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-braveTodo/Pods-braveTodo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB2BE4F2239524DB00FB933B /* Sources */ = {
@@ -330,6 +399,7 @@
 		};
 		EB2BE50B239524DC00FB933B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13EC2AB2D207E02B8308EC4B /* Pods-braveTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -350,6 +420,7 @@
 		};
 		EB2BE50C239524DC00FB933B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0C23AC36F0D474D7C10E780 /* Pods-braveTodo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

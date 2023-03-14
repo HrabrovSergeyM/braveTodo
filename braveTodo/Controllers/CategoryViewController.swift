@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 
 class CategoryViewController: SwipeTableViewController {
@@ -31,8 +32,14 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
+        print(UITraitCollection.current)
         cell.textLabel?.text = categoryArray[indexPath.row].name ?? "No Categories Added Yet"
+        if indexPath.row == 0 {
+            cell.backgroundColor = UIColor(named: "firstCategory")
+        } else {
+            cell.backgroundColor = UIColor(hexString: categoryArray[indexPath.row].color ?? "1D9BF6")
+        }
+        
         
         return cell
     }
@@ -65,6 +72,7 @@ class CategoryViewController: SwipeTableViewController {
             
             let newCategory = Category(context: self.context)
             newCategory.name = textField.text ?? "New category"
+            newCategory.color = UIColor.randomFlat().hexValue()
             
             
             self.categoryArray.append(newCategory)
