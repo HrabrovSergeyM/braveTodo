@@ -17,7 +17,7 @@ class ToDoListViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 80.0
+        
         
         let appearance = UINavigationBarAppearance()
         
@@ -46,7 +46,7 @@ class ToDoListViewController: SwipeTableViewController {
         
         let item = itemArray[indexPath.row]
         
-        cell.textLabel?.text = item.done == true ? "Completed" : item.title
+        cell.textLabel?.text = item.title
         
         cell.accessoryType = item.done == true ? .checkmark : .none
         

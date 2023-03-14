@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Category View Controller-->
+        <!--Categories-->
         <scene sceneID="uEE-MF-vR2">
             <objects>
                 <tableViewController id="bkB-KS-Cfu" customClass="CategoryViewController" customModule="braveTodo" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,8 +31,9 @@
                             <outlet property="delegate" destination="bkB-KS-Cfu" id="fWQ-fw-bZA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="HZs-fV-ENF">
+                    <navigationItem key="navigationItem" title="Categories" id="HZs-fV-ENF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="89w-Hm-j6V">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="addCategoryPressed:" destination="bkB-KS-Cfu" id="AXb-vR-LbR"/>
                             </connections>
@@ -46,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="436" y="-73"/>
         </scene>
-        <!--braveTodo-->
+        <!--To do-->
         <scene sceneID="Q0E-Bm-iqt">
             <objects>
                 <tableViewController id="EAX-tH-58p" customClass="ToDoListViewController" customModule="braveTodo" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,7 +78,7 @@
                             <outlet property="delegate" destination="EAX-tH-58p" id="5Jl-d0-i9Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="braveTodo" id="UWp-wm-eH9">
+                    <navigationItem key="navigationItem" title="To do" id="UWp-wm-eH9">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KhK-lX-ddj">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>
