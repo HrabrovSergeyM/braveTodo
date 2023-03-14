@@ -9,14 +9,17 @@
 import UIKit
 import CoreData
 
-class CategoryViewController: UITableViewController {
+
+class CategoryViewController: SwipeTableViewController {
     
     var categoryArray = [Category]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 80.0
         
         loadCategories()
     }
@@ -29,11 +32,9 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let category = categoryArray[indexPath.row]
-        
-        cell.textLabel?.text = category.name
+        cell.textLabel?.text = categoryArray[indexPath.row].name ?? "No Categories Added Yet"
         
         return cell
     }
@@ -56,8 +57,8 @@ class CategoryViewController: UITableViewController {
             destinationVC.selectedCategory = categoryArray[indexPath.row]
         }
     }
-
-  
+    
+    
     @IBAction func addCategoryPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -66,7 +67,7 @@ class CategoryViewController: UITableViewController {
             
             let newCategory = Category(context: self.context)
             newCategory.name = textField.text ?? "New category"
-       
+            
             
             self.categoryArray.append(newCategory)
             
@@ -78,13 +79,13 @@ class CategoryViewController: UITableViewController {
             textField = alertTextField
             
         }
-       
+        
         alert.addAction(action)
         present(alert, animated: true)
     }
     
     // MARK: - Model Manipulation Methods
-
+    
     func saveCategories() {
         do {
             try context.save()
@@ -98,7 +99,7 @@ class CategoryViewController: UITableViewController {
     func loadCategories(with request: NSFetchRequest<Category> = Category.fetchRequest()) {
         
         do {
-           categoryArray = try context.fetch(request)
+            categoryArray = try context.fetch(request)
         } catch {
             print("Error reading context \(error)")
         }
@@ -106,6 +107,10 @@ class CategoryViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-
-    
+    override func updateModel(at indexPath: IndexPath) {
+        self.context.delete(categoryArray[indexPath.row])
+        categoryArray.remove(at: indexPath.row)
+    }
 }
+
+

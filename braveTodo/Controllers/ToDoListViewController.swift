@@ -1,9 +1,8 @@
 import UIKit
 import CoreData
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: SwipeTableViewController {
     
-
     var itemArray = [Item]()
     
     var selectedCategory: Category? {
@@ -17,16 +16,19 @@ class ToDoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 80.0
+        
         let appearance = UINavigationBarAppearance()
-
-//        appearance.configureWithTransparentBackground()
-
-//        appearance.backgroundColor = UIColor.systemBlue
-
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-
+        
+        //        appearance.configureWithTransparentBackground()
+        
+        //        appearance.backgroundColor = UIColor.systemBlue
+        
+        //        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
         navigationItem.standardAppearance = appearance
-
+        
         navigationItem.scrollEdgeAppearance = appearance
         
     }
@@ -39,31 +41,29 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         
         let item = itemArray[indexPath.row]
         
         cell.textLabel?.text = item.done == true ? "Completed" : item.title
-
+        
         cell.accessoryType = item.done == true ? .checkmark : .none
         
         return cell
     }
-
+    
     // MARK: - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        context.delete(itemArray[indexPath.row])
-        itemArray.remove(at: indexPath.row)
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -85,13 +85,13 @@ class ToDoListViewController: UITableViewController {
             textField = alertTextField
             
         }
-       
+        
         alert.addAction(action)
         present(alert, animated: true)
     }
     
     // MARK: - Model Manipulation Methods
-
+    
     func saveItems() {
         do {
             try context.save()
@@ -111,15 +111,20 @@ class ToDoListViewController: UITableViewController {
         } else {
             request.predicate = categoryPredicate
         }
-
+        
         
         do {
-           itemArray = try context.fetch(request)
+            itemArray = try context.fetch(request)
         } catch {
             print("Error reading context \(error)")
         }
         
         self.tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        self.context.delete(itemArray[indexPath.row])
+        itemArray.remove(at: indexPath.row)
     }
     
 }

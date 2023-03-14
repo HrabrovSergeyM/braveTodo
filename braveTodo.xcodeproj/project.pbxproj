@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E968DDE529C01F3F00671719 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E968DDE429C01F3F00671719 /* CategoryViewController.swift */; };
 		E9D5DA3129BF158F00A4F7AD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9D5DA2F29BF158F00A4F7AD /* DataModel.xcdatamodeld */; };
+		E9DEE15B29C03DF100195496 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9DEE15A29C03DF100195496 /* SwipeCellKit */; };
+		E9DEE15D29C0522C00195496 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEE15C29C0522C00195496 /* SwipeTableViewController.swift */; };
 		EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4F9239524DB00FB933B /* AppDelegate.swift */; };
 		EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */; };
 		EB2BE501239524DB00FB933B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE4FF239524DB00FB933B /* Main.storyboard */; };
@@ -19,6 +21,7 @@
 /* Begin PBXFileReference section */
 		E968DDE429C01F3F00671719 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E9D5DA3029BF158F00A4F7AD /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		E9DEE15C29C0522C00195496 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		EB2BE4F6239524DB00FB933B /* braveTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = braveTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2BE4F9239524DB00FB933B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9DEE15B29C03DF100195496 /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +56,7 @@
 			children = (
 				E968DDE429C01F3F00671719 /* CategoryViewController.swift */,
 				EB2BE4FD239524DB00FB933B /* ToDoListViewController.swift */,
+				E9DEE15C29C0522C00195496 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -118,6 +123,9 @@
 			dependencies = (
 			);
 			name = braveTodo;
+			packageProductDependencies = (
+				E9DEE15A29C03DF100195496 /* SwipeCellKit */,
+			);
 			productName = Todoey;
 			productReference = EB2BE4F6239524DB00FB933B /* braveTodo.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +154,9 @@
 				Base,
 			);
 			mainGroup = EB2BE4ED239524DB00FB933B;
+			packageReferences = (
+				E9DEE15929C03DF100195496 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+			);
 			productRefGroup = EB2BE4F7239524DB00FB933B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,6 +188,7 @@
 				EB2BE4FE239524DB00FB933B /* ToDoListViewController.swift in Sources */,
 				E9D5DA3129BF158F00A4F7AD /* DataModel.xcdatamodeld in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
+				E9DEE15D29C0522C00195496 /* SwipeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +390,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E9DEE15929C03DF100195496 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E9DEE15A29C03DF100195496 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9DEE15929C03DF100195496 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E9D5DA2F29BF158F00A4F7AD /* DataModel.xcdatamodeld */ = {
