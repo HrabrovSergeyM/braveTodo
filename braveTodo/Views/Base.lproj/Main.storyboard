@@ -8,6 +8,44 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Category View Controller-->
+        <scene sceneID="uEE-MF-vR2">
+            <objects>
+                <tableViewController id="bkB-KS-Cfu" customClass="CategoryViewController" customModule="braveTodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7oo-bu-47F">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="J1a-mx-FlR">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J1a-mx-FlR" id="WtJ-vM-SC1">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bkB-KS-Cfu" id="bm2-Hj-hhN"/>
+                            <outlet property="delegate" destination="bkB-KS-Cfu" id="fWQ-fw-bZA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="HZs-fV-ENF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="89w-Hm-j6V">
+                            <connections>
+                                <action selector="addCategoryPressed:" destination="bkB-KS-Cfu" id="AXb-vR-LbR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="EAX-tH-58p" kind="show" identifier="goToItems" id="eXt-LQ-t8f"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7wo-u7-Sol" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="436" y="-73"/>
+        </scene>
         <!--braveTodo-->
         <scene sceneID="Q0E-Bm-iqt">
             <objects>
@@ -70,12 +108,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="EAX-tH-58p" kind="relationship" relationship="rootViewController" id="4Yu-p4-BHk"/>
+                        <segue destination="bkB-KS-Cfu" kind="relationship" relationship="rootViewController" id="CaJ-d4-1eC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atw-7O-yS3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="235.87786259541983" y="-73.239436619718319"/>
+            <point key="canvasLocation" x="-338" y="-73"/>
         </scene>
     </scenes>
     <resources>
