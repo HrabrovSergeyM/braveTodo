@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import ChameleonFramework
 
 class ToDoListViewController: SwipeTableViewController {
     
@@ -10,6 +11,7 @@ class ToDoListViewController: SwipeTableViewController {
             loadItems()
         }
     }
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -17,20 +19,43 @@ class ToDoListViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         let appearance = UINavigationBarAppearance()
         
-        //        appearance.configureWithTransparentBackground()
+//                appearance.configureWithTransparentBackground()
+//
+//                appearance.backgroundColor = UIColor.systemBlue
+//
+//                appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        //        appearance.backgroundColor = UIColor.systemBlue
+//        navigationItem.standardAppearance = appearance
+//
+//        navigationItem.scrollEdgeAppearance = appearance
+
+       
         
-        //        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        navigationItem.standardAppearance = appearance
-        
-        navigationItem.scrollEdgeAppearance = appearance
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let colorHex = selectedCategory?.color {
+            
+            title = selectedCategory!.name
+            
+            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller doesn't exist")}
+            
+            if let navBarColor = UIColor(hexString: colorHex) {
+              
+                navBar.backgroundColor = navBarColor
+//                navBar.tintColor = ContrastColorOf(navBarColor, returnFlat: true)
+                navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+                
+                searchBar.barTintColor = navBarColor
+            }
+            
+    
+            
+            
+            
+        }
     }
     
     // MARK: - Datasource Methods
@@ -42,13 +67,23 @@ class ToDoListViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
-        
+       
+       
         let item = itemArray[indexPath.row]
+    
+       
+        let color =  UIColor(hexString: (selectedCategory?.color)!)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(itemArray.count))
+      
         
-        cell.textLabel?.text = item.title
+            cell.textLabel?.text = item.title
+            
+            cell.accessoryType = item.done == true ? .checkmark : .none
+            
         
-        cell.accessoryType = item.done == true ? .checkmark : .none
+            cell.backgroundColor = color
+       
+        cell.textLabel?.textColor = ContrastColorOf(color!, returnFlat: true)
+      
         
         return cell
     }
