@@ -42,12 +42,19 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        context.delete(categoryArray[indexPath.row])
-        categoryArray.remove(at: indexPath.row)
+        performSegue(withIdentifier: "goToItems", sender: self)
         
         saveCategories()
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ToDoListViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categoryArray[indexPath.row]
+        }
     }
 
   
@@ -98,5 +105,7 @@ class CategoryViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
+    
+
     
 }
